@@ -21,6 +21,9 @@ namespace MyBooks.WebApp
                       "~/Scripts/respond.js",
                       "~/Scripts/salvattore.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/myjavascript").Include(
+                      "~/Scripts/homepage.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
