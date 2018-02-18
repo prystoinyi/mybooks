@@ -1,0 +1,279 @@
+﻿<div class="jumbotron text-center">
+    <div class="row">
+        <h1 class="logo col-xs-12 col-sm-9"><a href="#" class="mdi mdi-library" id="btnLoad">My Books</a></h1>
+        <p class=btn_create col-xs-12 col-sm-3"><input type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create" value="Create"/></p>
+    </div>
+</div>
+<div class="row masonry" data-columns id="listData">
+    
+    @*<div class="col-md-4">
+        <div class="thumbnail">
+            <div class="container">
+                <h3 class="col-sm-12">Web Hosting </h3>
+                <h4 class="col-sm-10 fontSize">You can easily find a web hosting company that offers the right mix of features and price for your applications.</h4>
+                <p class="col-sm-2">
+                    <a href="#" class="mdi mdi-lead-pencil btn btn-success btn-md  position"></a>
+                    <a href="#" class="mdi mdi-window-close btn btn-danger btn-md  position"></a>
+                </p>
+            </div>
+
+        </div>
+    </div>*@ 
+</div>
+
+<div class="modal fade" id="edit" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="mdi mdi-account-edit"></span> Editing</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form role="form" class="was-validated">
+                        <div class="form-group">
+                            <label for="name"><span class="mdi mdi-book-open"></span> Name</label>
+                            <input type="text" class="form-control" id="editName" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="author"><span class="mdi mdi-account"></span> Author</label>
+                            <input type="text" class="form-control" id="editAuthor" placeholder="Enter author">
+                        </div>
+                        <div class="form-group">
+                            <label for="publication"><span class="mdi mdi-account-plus"></span> Year of publication</label>
+                            <input type="text" class="form-control" id="editPublication" placeholder="Enter publication">
+                        </div>
+                        <div class="form-group">
+                            <label for="editing"><span class="mdi mdi-account-edit"></span> Editing</label>
+                            <input type="text" class="form-control" id="editEditing" placeholder="Enter editing">
+                        </div>
+                        <div class="form-group">
+                            <label for="tag"><span class="mdi mdi-tag-multiple"></span> Tags</label>
+                            <input type="text" class="form-control" id="editTag" placeholder="Enter tag">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" checked>Publicly available</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block" id="btnUpdate" ><span class="mdi mdi-lead-pencil"></span> Edit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<div class="modal fade" id="create" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-book"></span> Creating</h4>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <form role="form" class="was-validated">
+                    <div class="form-group">
+                        <label for="name"><span class="mdi mdi-book-open"></span> Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="author"><span class="mdi mdi-account"></span> Author</label>
+                        <input type="text" class="form-control" id="author" placeholder="Enter author">
+                    </div>
+                    <div class="form-group">
+                        <label for="publication"><span class="mdi mdi-account-plus"></span> Year of publication</label>
+                        <input type="text" class="form-control" id="publication" placeholder="Enter publication">
+                    </div>
+                    <div class="form-group">
+                        <label for="editing"><span class="mdi mdi-account-edit"></span> Editing</label>
+                        <input type="text" class="form-control" id="editing" placeholder="Enter editing">
+                    </div>
+                    <div class="form-group">
+                        <label for="tag"><span class="mdi mdi-tag-multiple"></span> Tags</label>
+                        <input type="text" class="form-control" id="tag" placeholder="Enter tag">
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" checked>Publicly available</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block" id="btnCreate"><span class="mdi mdi-book-open-page-variant"></span> Create</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+       
+        var arr = [];
+        var str = new Object();
+        var str = JSON.stringify(arr[0]);
+
+        function foundBook(ID) {
+            for (var i = 0; i < arr.length; i++) {
+
+            }
+        }
+
+        $(document).ready(function () {
+            $('#btnLoad').click(function () {
+                $.ajax({
+                    url: 'api/book',
+                    method: 'GET',
+                    success: function (data) {
+                        //$('#divData').removeClass('hidden');
+                        $('#listData').empty();
+                        $.each(arr = data, function (index, value) {
+                            var row = $('<div class="item"><div class="thumbnail item' + value.ID +'"><div class="container"><h3 class="col-sm-12">'
+                                + value.Name + '<h4 class="col-sm-10">'
+                                + value.Author + '</h4><p class="col-sm-2"><a href="#" class="mdi mdi-lead-pencil btn btn-success btn-md  position" onclick="foundBookId(' + value.ID +')" data-toggle="modal" data-target="#edit"></a><a href="#" class="mdi mdi-window-close btn btn-danger btn-md  position btnDelete" onclick="Delete(' + value.ID +')"></a></p></div></div></div>');
+
+                            $('#listData').append(row);
+                        });
+                        salvattore.recreateColumns($('#listData')[0]);
+                    },
+                })
+            })
+            $('#btnCreate').click(function () {
+                var obj = new Object();
+                obj.Name = $('#name').val();
+                obj.Author = $('#author').val();
+                obj.PublicationYear = $('#publication').val();
+                obj.Edition = $('#editing').val();
+
+                //var obj = {
+                //    'Name': $('#editName').val(),
+                //    'Author': $('#editAuthor').val(),
+                //    'PublicationYear': $('#editPublication').val(),
+                //    'Edition': $('#editEditing').val()
+                //};
+
+                //var str = JSON.stringify(obj);
+
+                $.ajax({
+                    url: 'api/book',
+                    type: "POST",
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {
+                        $.ajax({
+                            url: 'api/book',
+                            method: 'GET',
+                            success: function (data) {
+                                //$('#divData').removeClass('hidden');
+                                $('#listData').empty();
+                                $.each(arr = data, function (index, value) {
+                                    var row = $('<div class="item"><div class="thumbnail item' + value.ID + '"><div class="container"><h3 class="col-sm-12">'
+                                        + value.Name + '<h4 class="col-sm-10">'
+                                        + value.Author + '</h4><p class="col-sm-2"><a href="#" class="mdi mdi-lead-pencil btn btn-success btn-md  position" onclick="foundBookId(' + value.ID + ')" data-toggle="modal" data-target="#edit"></a><a href="#" class="mdi mdi-window-close btn btn-danger btn-md  position btnDelete" onclick="Delete(' + value.ID + ')"></a></p></div></div></div>');
+
+                                    $('#listData').append(row);
+                                });
+                                salvattore.recreateColumns($('#listData')[0]);
+                            },
+                        })
+                    }
+                    
+                })
+            })
+
+            $('#btnUpdate').click(function () {
+                var updt = new Object();
+                var id;
+                id = arr[elementArray].ID;
+
+                updt.Name = $('#editName').val();
+                updt.Author = $('#editAuthor').val();
+                updt.PublicationYear = $('#editPublication').val();
+                updt.Edition = $('#editEditing').val();
+
+                $.ajax({
+                    url: 'api/book/' + id,
+                    type: "PUT",
+                    data: JSON.stringify(updt),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $.ajax({
+                            url: 'api/book',
+                            method: 'GET',
+                            success: function (data) {
+                                //$('#divData').removeClass('hidden');
+                                $('#listData').empty();
+                                $.each(arr = data, function (index, value) {
+                                    var row = $('<div class="item"><div class="thumbnail item' + value.ID + '"><div class="container"><h3 class="col-sm-12">'
+                                        + value.Name + '<h4 class="col-sm-10">'
+                                        + value.Author + '</h4><p class="col-sm-2"><a href="#" class="mdi mdi-lead-pencil btn btn-success btn-md  position" onclick="foundBookId(' + value.ID + ')" data-toggle="modal" data-target="#edit"></a><a href="#" class="mdi mdi-window-close btn btn-danger btn-md  position btnDelete" onclick="Delete(' + value.ID + ')"></a></p></div></div></div>');
+
+                                    $('#listData').append(row);
+                                });
+                                salvattore.recreateColumns($('#listData')[0]);
+                            },
+                        })
+                    },
+                })
+
+            })
+            
+        });
+        function Delete(index) {
+            $.ajax({
+                url: 'api/book/' + index,
+                type: "DELETE",
+                success: function () {
+                    //window.location = "/";
+                    $('.item' + index).remove();
+                    $.ajax({
+                        url: 'api/book',
+                        method: 'GET',
+                        success: function (data) {
+                            //$('#divData').removeClass('hidden');
+                            $('#listData').empty();
+                            $.each(arr = data, function (index, value) {
+                                var row = $('<div class="item"><div class="thumbnail item' + value.ID + '"><div class="container"><h3 class="col-sm-12">'
+                                    + value.Name + '<h4 class="col-sm-10">'
+                                    + value.Author + '</h4><p class="col-sm-2"><a href="#" class="mdi mdi-lead-pencil btn btn-success btn-md  position" onclick="foundBookId(' + value.ID + ')" data-toggle="modal" data-target="#edit"></a><a href="#" class="mdi mdi-window-close btn btn-danger btn-md  position btnDelete" onclick="Delete(' + value.ID + ')"></a></p></div></div></div>');
+
+                                $('#listData').append(row);
+                            });
+                            salvattore.recreateColumns($('#listData')[0]);
+                        },
+                    })
+                }
+            })
+        }
+
+        var elementArray;
+        function foundBookId(id) {
+
+           
+
+            for (var i = 0; i < arr.length; i++) {
+                if (id == arr[i].ID) {
+                    elementArray = i;
+                }
+            }
+            
+            $('#editName').val(arr[elementArray].Name);
+            $('#editAuthor').val(arr[elementArray].Author);
+            $('#editPublication').val(arr[elementArray].PublicationYear);
+            $('#editEditing').val(arr[elementArray].Edition);
+
+
+            
+        }
+    </script>
+}
